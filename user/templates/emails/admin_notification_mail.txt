@@ -1,0 +1,5 @@
+  Hello,
+
+  You have received a gift card worth {{currency}} {{amount}} from {{sender_fullname}} via Resident Capital Finance.
+
+

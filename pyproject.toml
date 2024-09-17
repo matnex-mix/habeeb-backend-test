@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "voters"
+version = "1"
+description = ""
+authors = ["Oyero Habib"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1.1"
+daphne = "^4.1.2"
+django-debug-toolbar = "^4.3.0"
+drf-spectacular = "^0.27.2"
+djangorestframework-simplejwt = "^5.3.1"
+markdown = "^3.6"
+djangorestframework = "^3.15.1"
+django-import-export = "^4.0.3"
+pylint = "^3.2.0"
+flower = "^2.0.1"
+celery = "^5.4.0"
+pytest-django = "^4.8.0"
+python-decouple = "^3.8"
+python-dateutil = "^2.9.0.post0"
+django-storages = "^1.14.3"
+django-filter = "^24.2"
+django-cors-headers = "^4.3.1"
+django-widget-tweaks = "^1.5.0"
+dj-database-url = "^2.1.0"
+cuid2 = "^2.0.1"
+django-jazzmin = "^3.0.0"
+django-extensions = "^3.2.3"
+email-validator = "^2.1.1"
+drf-standardized-errors = "^0.13.0"
+faker = "^26.0.0"
+python-dotenv = "^1.0.1"
+drf-extra-fields = "^3.7.0"
+polars = "^1.7.1"
+bcrypt = "^4.2.0"
+gunicorn = "^23.0.0"
+django-heroku = "^0.3.1"
+psycopg2-binary = "^2.9.9"
+aiofiles = "^24.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
