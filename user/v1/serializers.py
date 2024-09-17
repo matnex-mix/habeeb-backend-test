@@ -47,29 +47,17 @@ class EligibleUserUploadSerializer(serializers.ModelSerializer):
         data = validated_data.copy()
         file_upload = super().create(validated_data)
         data['data_stream'] = self.data_stream
-        handle_file_upload(data['data_stream'], file_upload, user)
-        # threading.Thread(
-        #     target=self.run_async,  # Reference the static method properly
-        #     args=(data['data_stream'], file_upload, user)
-        # ).start()
+        handle_file_upload.delay(data['data_stream'], file_upload, user)
 
         return file_upload
 
 
 class ListUserSerializer(serializers.ModelSerializer):
+    department_name = serializers.CharField(max_length=100)
+
     class Meta:
         model = get_user_model()
-        fields = ['id', 'firstname', 'lastname', 'email', 'role',
-                  'image', 'last_login',
-                  ]
-        extra_kwargs = {
-            'email': {"read_only": True},
-            'is_active': {'read_only': True},
-            'created_at': {'read_only': True},
-            'verified': {'read_only': True},
-            'last_login': {'read_only': True},
-
-        }
+        fields = ['firstname', 'lastname', 'email', 'phone', "matric_no", "department_name"]
 
 
 class AuthTokenSerializer(serializers.Serializer):

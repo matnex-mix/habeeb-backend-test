@@ -11,10 +11,13 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from user.v1.serializers import *
+from django.db.models import F
 
 
 class AuthViewSets(viewsets.ModelViewSet):
-    queryset = get_user_model().objects.all()
+    queryset = get_user_model().objects.exclude(is_superuser=True).annotate(
+        department_name=F('department__name')
+    )
     serializer_class = ListUserSerializer
     http_method_names = ['get', 'post', ]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]

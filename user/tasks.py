@@ -6,6 +6,8 @@ from .enums import BulkStatusEnum
 from django.template.loader import get_template
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
+from celery import shared_task
+from core.celery import app
 
 
 def send_email(subject, email_from, html_alternative, text_alternative):
@@ -23,7 +25,7 @@ def send_admin_notification_mail(email_data):
     send_email(email_data['title'],
                email_data['email'], html_alternative, text_alternative)
 
-
+@app.task(serializer="pickle")
 def handle_file_upload(data_stream, file_upload: EligibleUserUpload, user: User):
     file, valid_students = validate_file_upload_data(data_stream=data_stream, file_upload=file_upload)
 
