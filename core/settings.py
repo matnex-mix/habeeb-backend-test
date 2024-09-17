@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'drf_spectacular',
     'user.apps.UserConfig',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "core.urls"
 
