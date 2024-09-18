@@ -13,3 +13,5 @@ app/logs/debug.log
 app/logs/celery.log
 /k8s/secrets/
 .python-version
+/users/bulk
+batch_upload_error*

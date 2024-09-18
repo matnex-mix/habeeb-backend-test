@@ -205,6 +205,7 @@ def validate_file_upload_data(data_stream, file_upload: EligibleUserUpload, batc
                                         firstname=first_name,
                                         lastname=last_name,
                                         middle_name=middle_name,
+                                        matric_no=matric_number,
                                         phone=phone_number,
                                         department=dept,
                                         role=RoleEnum.Student.value,

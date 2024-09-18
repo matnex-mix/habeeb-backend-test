@@ -35,19 +35,13 @@ class EligibleUserUploadSerializer(serializers.ModelSerializer):
 
         return attrs
 
-    @staticmethod
-    def run_async(data_stream, file_upload, user):
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        loop.run_until_complete(handle_file_upload(data_stream, file_upload, user))
-
     @transaction.atomic()
     def create(self, validated_data):
         user = self.context['request'].user
         data = validated_data.copy()
         file_upload = super().create(validated_data)
         data['data_stream'] = self.data_stream
-        handle_file_upload.delay(data['data_stream'], file_upload, user)
+        handle_file_upload(data['data_stream'], file_upload, user)
 
         return file_upload
 
@@ -57,7 +51,7 @@ class ListUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ['firstname', 'lastname', 'email', 'phone', "matric_no", "department_name"]
+        fields = ['firstname', 'lastname', 'email', 'phone', "matric_no", "department_name", "middle_name"]
 
 
 class AuthTokenSerializer(serializers.Serializer):
